@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantfolio.net - Quantify Your Future Today</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- Tailwind CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font: Roboto -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="font-roboto bg-gray-100">
+    <header class="bg-blue-600 text-white p-4 text-center">
+        <h1 class="text-3xl font-bold">Quantfolio.net</h1>
+        <p class="text-lg">Quantify Your Future Today</p>
+    </header>
+    <main class="max-w-4xl mx-auto p-4">
+        <section id="input-form" class="bg-white shadow-md rounded p-6">
+            <h2 class="text-2xl font-semibold mb-4">Enter Your Details</h2>
+            <form id="user-form">
+                <div class="mb-4">
+                    <label for="age" class="block text-gray-700">Age:</label>
+                    <input type="number" id="age" class="w-full border p-2 rounded" VALUE="31" required min="18" max="100">
+                </div>
+                <div class="mb-4">
+                    <label for="salary" class="block text-gray-700">Monthly Salary ($):</label>
+                    <input type="number" VALUE="1100" id="salary" class="w-full border p-2 rounded" required min="0">
+                </div>
+                <div class="mb-4">
+                    <label for="loan" class="block text-gray-700">Monthly Loan Payment ($):</label>
+                    <input type="number" VALUE="300"  id="loan" class="w-full border p-2 rounded" required min="0">
+                </div>
+                <div class="mb-4">
+                    <label for="expenses" class="block text-gray-700">Monthly Expenses (excluding loan) ($):</label>
+                    <input type="number" VALUE="300" id="expenses" class="w-full border p-2 rounded" required min="0">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Calculate Allocation</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Popup Modal -->
+    <dialog id="results-modal" class="bg-white shadow-lg rounded-lg p-6 max-w-4xl w-full mx-auto animate-modal-in">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold">Your Portfolio Advice</h2>
+            <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+        </div>
+        <p id="disposable-income" class="mb-2"></p>
+        <p id="equity-bond-split" class="mb-4"></p>
+        <div class="flex flex-col md:flex-row gap-4 mb-4">
+            <div id="allocation-table" class="flex-1 overflow-x-auto"></div> <!-- Added overflow for wide tables -->
+            <div class="flex-1">
+                <canvas id="pie-chart" class="max-w-full"></canvas>
+            </div>
+        </div>
+        <button id="accept-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Accept Portfolio</button>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <script src="js/functions.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chart.js"></script>
+    
+</body>
+</html>
