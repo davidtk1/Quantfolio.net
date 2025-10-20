@@ -8,7 +8,6 @@ function drawPieChart(allocations) {
         percents.push( data.percent);
     });
 
-    console.log(labels);
 
     const ctx = document.getElementById('pie-chart').getContext('2d');
     new Chart(ctx, {
