@@ -1,7 +1,0 @@
-[
-  {"symbol": "AAPL", "sector": "Technology", "marketCap": "Large"},
-  {"symbol": "MSFT", "sector": "Technology", "marketCap": "Large"},
-  {"symbol": "JNJ", "sector": "Healthcare", "marketCap": "Large"},
-  {"symbol": "V", "sector": "Finance", "marketCap": "Large"},
-  {"symbol": "SMCI", "sector": "Technology", "marketCap": "Mid"}
-]

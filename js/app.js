@@ -24,10 +24,6 @@ var app  = {
         XLU: 'Utilities',
         XLC: 'Communication Services',
         XLRE: 'Real Estate',
-        MGC: 'Mega Cap', 
-        VV:'Large Cap',
-        VO:'Mid Cap',
-        VB: 'Small Cap',
         BND: 'Bond Market ETF'
     },
 
@@ -39,15 +35,13 @@ var app  = {
                 XLF: 10,
                 XLI: 5,
                 XLB: 1,
-                XLP: 1,
-                XLY: 5,
+                XLP: 5,
+                XLY: 10,
                 XLU: 1,
                 XLC: 20,
                 XLRE: 1,
-                MGC: 10, 
-                VV: 25,
-                VO:30,
-                VB: 25
+               
+                
         },
         middle_50 :                 
         {  
@@ -61,11 +55,7 @@ var app  = {
                 XLY: 8,
                 XLU: 1,
                 XLC: 15,
-                XLRE: 2,
-                MGC:15, 
-                VV:25,
-                VO:30,
-                VB: 20
+                XLRE: 2
              },
         others :  {  
                 XLK: 25, 
@@ -78,11 +68,8 @@ var app  = {
                 XLY: 5,
                 XLU: 1,
                 XLC: 20,
-                XLRE: 1,
-                MGC: 10, 
-                VV: 25,
-                VO:30,
-                VB: 25
+                XLRE: 1
+              
             }
         
 

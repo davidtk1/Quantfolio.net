@@ -13,6 +13,30 @@ function showError(msg) {
     errorModal.showModal();
 }
 
+function renderBasket() {  
+    basketData= basket.init();
+    beasketTbody = document.getElementById('beasketTbody');
+    totalBasketPriceVal = 0
+    beasketTbody.innerHTML = '';
+    Object.entries(basketData).forEach(([etf, data]) => {
+        beasketTbody.innerHTML += `<tr><td>${etf}</td><td>${data}</td></tr>`;
+        totalBasketPriceVal+=parseFloat(data);
+    })
+    totalBasketPrice =  document.getElementById('totalBasketPrice');
+    totalBasketPrice.innerHTML = `Total Basket Price: $${totalBasketPriceVal.toFixed(2)}`;
+}     
+
+renderBasket()
+
+
+document.getElementById('clearBasketButton').addEventListener('click', async (e) => {
+    e.preventDefault();    
+    basket.clearBasket();
+    renderBasket();     
+})
+
+    //;
+
 document.getElementById('user-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -23,18 +47,23 @@ document.getElementById('user-form').addEventListener('submit', async (e) => {
     
 
     app.init (age,salary,loan,expenses);
-    const  allocations = app.caluculate();  
+    const  allocations = app.caluculate();      
+
+
+
+
+        
 
     // Display
     document.getElementById('disposable-income').textContent = `Discretionary Income: $${app.InvestingAmount().toFixed(2)}`;
-    document.getElementById('equity-bond-split').textContent = `Equity: ${app.equityPct()}%, Bonds: ${app.bond()}%`;
+    document.getElementById('equity-bond-split').textContent = `Equity ETF By Sector: ${app.equityPct()}%, Bonds ETF - BND: ${app.bond()}%`;
 
     // Table
     const table = document.createElement('table');
     table.classList.add('w-full', 'border-collapse', 'text-sm');
     const thead = table.createTHead();
     const headerRow = thead.insertRow();
-    ['ETF', 'Allocation (%)', 'Dollar Amount ($)'].forEach(text => {
+    ['ETF Tickers', 'Allocation (%)', 'Dollar Amount ($)' , 'Add'].forEach(text => {
         const th = document.createElement('th');
         th.textContent = text;
         th.classList.add('border', 'p-2', 'bg-gray-200', 'text-left');
@@ -46,9 +75,18 @@ document.getElementById('user-form').addEventListener('submit', async (e) => {
         const displayEtf = `${etf} - ${fullName}`;
         const dollarAmount = (app.InvestingAmount() * (data.percent / 100)).toFixed(2);
         const row = tbody.insertRow();
-        [displayEtf, data.percent.toFixed(2), dollarAmount].forEach((text, index) => {
+        [
+            displayEtf, 
+            data.percent.toFixed(2), 
+            dollarAmount,   
+            `<input type="checkbox" class="Productsticker" name="${etf}" value="${dollarAmount}" >`
+        ].forEach((text, index) => {
             const td = row.insertCell();
-            td.textContent = text;
+            if(index==4) {
+                td.textContent = text;
+            } else {
+                td.innerHTML = text;
+            }
             td.classList.add('border', 'p-2');
             if (index > 0) td.classList.add('text-right');
         });
@@ -66,6 +104,22 @@ document.getElementById('user-form').addEventListener('submit', async (e) => {
   
    
 });
+
+
+document.getElementById('BasketForm').addEventListener('submit', async (e) => {
+    e.preventDefault();     
+    const formData = new FormData(e.target);
+    
+    tickers = document.getElementsByClassName("Productsticker");
+    Object.entries(tickers).forEach(([index, ticker]) => {
+        if(ticker.checked) {
+            basket.addBasketItem(ticker.name, ticker.value);
+        }
+    }); 
+    resultsModal.close();       
+    renderBasket();     
+    
+})
 
 // Close modals
 closeModalBtn.addEventListener('click', () => resultsModal.close());

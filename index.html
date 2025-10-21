@@ -2,19 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <meta name="description" content="Quantify your future today with Quantfolio's cutting-edge data-driven strategies, empowering smarter financial decisions and enhanced portfolio performance." />
+<!-- Keywords -->
+    <meta name="keywords" content="data-driven strategies, portfolio optimization, financial planning, Quantfolio" />
+<!-- Robots Meta Tag -->
+    <meta name="robots" content="index, follow" />
+<!-- Viewport (for Mobile Optimization) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Author -->
+    <meta name="author" content="Quantfolio.net" /> 
     <title>Quantfolio.net - Quantify Your Future Today</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- Tailwind CDN -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font: Roboto -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/animations.css">
+ 
 </head>
 <body class="font-roboto bg-gray-100">
-    <header class="bg-blue-600 text-white p-4 text-center">
-        <h1 class="text-3xl font-bold">Quantfolio.net</h1>
-        <p class="text-lg">Quantify Your Future Today</p>
+    <header class="bg-white shadow-sm p-4">
+        <div class="flex items-center justify-between max-w-4xl mx-auto w-full">
+            <div class="flex items-center">
+                <!-- Site logo -->
+                 <a href="/index.html" class="logo-link">
+                <img src="/assets/Logo.jpg" alt="Quantfolio logo" class="h-32 w-32 rounded-full object-cover">
+                </a>
+                <!-- Text content -->
+                <div class="ml-4">
+                    <h1 class="text-3xl font-bold text-blue-600">Quantfolio.net</h1>
+                    <p class="text-lg text-green-500">Quantify Your Future Today</p>
+                </div>
+            </div>
+            <!-- Model selector -->
+          
+        </div>
+        <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
     </header>
+
     <main class="max-w-4xl mx-auto p-4">
         <section id="input-form" class="bg-white shadow-md rounded p-6">
             <h2 class="text-2xl font-semibold mb-4">Enter Your Details</h2>
@@ -39,28 +62,58 @@
             </form>
         </section>
     </main>
+    <main class="max-w-4xl mx-auto p-4">
+        <section id="input-form" class="bg-white shadow-md rounded p-6">
+                <div id="BasketPortfolio">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="beasketTbody">
+                        
+                        </tbody>   
+                    </table>    
+                    <h4 id="totalBasketPrice"></h4>
+                </div>  
+           </section>
+           <button id="clearBasketButton" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Clear basket</button>
+    </main>
 
     <!-- Popup Modal -->
     <dialog id="results-modal" class="bg-white shadow-lg rounded-lg p-6 max-w-4xl w-full mx-auto animate-modal-in">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-semibold">Your Portfolio Advice</h2>
-            <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-        </div>
-        <p id="disposable-income" class="mb-2"></p>
-        <p id="equity-bond-split" class="mb-4"></p>
-        <div class="flex flex-col md:flex-row gap-4 mb-4">
-            <div id="allocation-table" class="flex-1 overflow-x-auto"></div> <!-- Added overflow for wide tables -->
-            <div class="flex-1">
-                <canvas id="pie-chart" class="max-w-full"></canvas>
+        <form id="BasketForm" action="" method="post">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold">Your Portfolio Advice</h2>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
             </div>
-        </div>
-        <button id="accept-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Accept Portfolio</button>
+            <p id="disposable-income" class="mb-2"></p>
+            <p id="equity-bond-split" class="mb-4"></p>
+            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                
+                    <div id="allocation-table" class="flex-1 overflow-x-auto"></div> 
+                    <div class="flex-1">
+                        <canvas id="pie-chart" class="max-w-full"></canvas>
+                    </div>
+                
+            </div>
+            <button type="submit" id="accept-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Accept Portfolio</button>
+        </form>
     </dialog>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
-    <script src="js/functions.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script src="js/app.js"></script>
+    <script src="js/basket.js"></script>
     <script src="js/main.js"></script>
     <script src="js/chart.js"></script>
+
+<footer class="bg-white shadow-sm p-4 mt-8 text-center" bottom="0" width="100%">
+        <p>&copy; 2025 Quantfolio.net. Built with HTML, CSS, JS.</p>
+</footer>
+    
     
 </body>
 </html>

@@ -1,41 +1,158 @@
+/* Base Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Logo Styles */
+.logo-link {
+    display: inline-block; /* Makes link wrap image tightly */
+    text-decoration: none; /* Remove underline */
+}
+
+.logo-img {
+    width: 128px; /* Tailwind h-32 = 8rem = 128px */
+    height: 128px; /* Tailwind w-32 = 8rem = 128px */
+    border-radius: 50%; /* Tailwind rounded-full */
+    object-fit: cover; /* Tailwind object-cover */
+    animation: logoPop 0.8s ease-out; /* CSS animation */
+    margin-bottom: 1rem; /* Space below logo */
+}
+
 /* Animations */
+@keyframes logoPop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.slogan {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    animation: slideInDown 1s ease-out;
+}
+
+.form-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+button {
+    background: #667eea;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #5a67d8;
+}
+
+.results-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+#portfolioChart {
+    max-width: 100%;
+    margin: 1rem auto;
+}
+
+.accept-btn {
+    display: block;
+    margin: 1rem auto;
+    background: #48bb78;
+}
+
+.accept-btn:hover {
+    background: #38a169;
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .fade-in {
-  animation: fadeIn 0.8s ease-out;
+    animation: fadeIn 0.8s ease-out;
 }
 
-/* Component-specific styles */
-body {
-  font-family: 'Poppins', sans-serif;
+.allocation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
 }
 
-header h1 {
-  letter-spacing: 1px;
+.allocation-table th,
+.allocation-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
 }
 
-#analysis-cards .card {
-  transition: transform 0.3s, box-shadow 0.3s;
+.allocation-table th {
+    background: #f4f4f4;
 }
 
-#analysis-cards .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  #user-form .grid-cols-2 {
-    grid-template-columns: 1fr;
-  }
-  #analysis-cards {
-    grid-template-columns: 1fr;
-  }
-  canvas {
-    max-width: 100%;
-    height: auto;
-  }
+/* Responsive */
+@media (max-width: 768px) {
+    .slogan { font-size: 2rem; }
+    .container { padding: 10px; }
+    .logo-img { width: 96px; height: 96px; } /* Smaller logo on mobile */
 }
