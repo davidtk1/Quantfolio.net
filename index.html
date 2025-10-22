@@ -80,9 +80,10 @@
                     </table>    
                     <h4 id="totalBasketPrice"></h4>
                 </div>  
+                <br><button id="clearBasketButton" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Clear basket</button>
+        
            </section>
-           <button id="clearBasketButton" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Clear basket</button>
-        </td></tr></table>
+           
     </main>
 
     <!-- Popup Modal -->
@@ -105,12 +106,73 @@
             <button type="submit" id="accept-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Accept Portfolio</button>
         </form>
     </dialog>
+<!-- New: Earnings Calendar Section -->
+    <section id="earnings-calendar" class="py-8 px-4 max-w-6xl mx-auto animate-fadeIn">
+        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Earnings Calendar – Quantify Market Moves</h2>
+        <p class="text-center text-gray-600 mb-8">Upcoming earnings can shift sectors – review before accepting your allocation.</p>
+        
+        <!-- Filters -->
+        <div class="flex justify-center mb-6 space-x-4">
+            <button id="filter-upcoming" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Upcoming</button>
+          
+        </div>
+        
+        <!-- Loading Spinner -->
+        <div id="loading" class="flex justify-center py-8 hidden">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
+        
+        <!-- Error Message -->
+        <div id="error" class="text-center text-red-500 py-4 hidden">Failed to load earnings data. Using mock data.</div>
+        
+        <!-- Calendar Table -->
+        <div class="lex items-center justify-between max-w-4xl mx-auto w-full">
+            <table id="earnings-table" class="w-full bg-white">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2 text-left font-semibold">Date</th>
+                        <th class="px-4 py-2 text-left font-semibold">Symbol</th>                       
+                        <th class="px-4 py-2 text-left font-semibold">Est. EPS</th>
+                        <th class="px-4 py-2 text-left font-semibold">Actual EPS</th>
+                    </tr>
+                </thead>
+                <tbody id="earnings-body" class="divide-y divide-gray-200">
+                    <!-- JS will populate rows -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+     <script>
+    const API_URL = 'https://financialmodelingprep.com/stable/earnings-calendar?apikey=R6bYKIQRKKtbCutZ37OVFZk0YYlvgibF';
 
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#earnings-table tbody');
+        data.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${item.date}</td>
+            <td>${item.symbol}</td>
+            <td>${item.epsEstimated}</td>
+            <td>${item.epsActual}</td>
+            
+          `;
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching earnings data:', error);
+      });
+  </script>
+    
+    <!-- Existing: Pie Chart Visualization, Accept Button -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     <script src="js/app.js"></script>
     <script src="js/basket.js"></script>
     <script src="js/main.js"></script>
     <script src="js/chart.js"></script>
+    
 
 <footer class="bg-white shadow-sm p-4 mt-8 text-center" bottom="0" width="100%">
         <p>&copy; 2025 Quantfolio.net. Built with HTML, CSS, JS.</p>
@@ -119,3 +181,4 @@
     
 </body>
 </html>
+
